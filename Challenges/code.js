@@ -44,3 +44,5 @@ console.log(BMIMark, BMIJohn);
 
 markHigherBMI = BMIMark > BMIJohn;
 console.log(markHigherBMI);
+
+// My comment: used const instead of var, created code without repeating - only changed values for mass and height
