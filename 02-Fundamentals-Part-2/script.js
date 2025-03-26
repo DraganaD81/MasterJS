@@ -234,7 +234,6 @@ console.log(jonas);
 console.log(
   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`
 );
-*/
 
 const jonas = {
   firstName: 'Jonas',
@@ -264,8 +263,8 @@ const jonas = {
   //       this.job
   //     }, and he has a driver's licence`;
   //   } else {
-  //     return;
-  //     `${this.firstName} is a ${this.calcAge()}-year old ${
+    //     return;
+    //     `${this.firstName} is a ${this.calcAge()}-year old ${
   //       this.job
   //     }, and he has no driver's licence`;
   //   }
@@ -297,3 +296,20 @@ console.log(jonas.age);
 // }
 
 console.log(jonas.getSummary());
+*/
+
+// console.log('Lifting weights repetition 1');
+// console.log('Lifting weights repetition 2');
+// console.log('Lifting weights repetition 3');
+// console.log('Lifting weights repetition 4');
+// console.log('Lifting weights repetition 5');
+// console.log('Lifting weights repetition 6');
+// console.log('Lifting weights repetition 7');
+// console.log('Lifting weights repetition 8');
+// console.log('Lifting weights repetition 9');
+// console.log('Lifting weights repetition 10');
+
+// for loop keeps running while condition is TRUE
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep}`);
+}

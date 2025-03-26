@@ -287,6 +287,11 @@ const john = {
   },
 };
 
+// When I want to assign value to const, i need to call method first.
+mark.calcBMI();
+john.calcBMI();
+console.log(mark.bmi, john.bmi);
+console.log(mark);
 // console.log(mark.calcBMI()>john.calcBMI());
 console.log(
   mark.calcBMI() > john.calcBMI()
