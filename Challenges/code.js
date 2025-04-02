@@ -338,27 +338,31 @@ const calcTip = function (bill) {
 
 /* Write your code below. Good luck! 🙂 */
 
-let bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 // console.log(bills[2]);
-let tips = [];
-let totals = [];
+const tips = [];
+const totals = [];
 
 for (let i = 0; i < bills.length; i++) {
-  tips[i] = calcTip(bills[i]);
-  totals[i] = tips[i] + bills[i];
+  const tip = calcTip(bills[i]);
+  tips.push(tip);
+  totals.push(tip + bills[i]);
   // console.log(calcTip(bills[i]) + bills[i]);
   // console.log(totals[i]);
 }
 
-let sum = 0;
+console.log(bills, tips, totals);
+
 let arr = [];
 
 const calcAverage = function (arr) {
+  let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     sum += arr[i];
   }
   return sum / arr.length;
 };
 
-// console.log(calcAverage(bills));
-console.log(totals);
+console.log(calcAverage(2, 3, 7));
+console.log(calcAverage(totals));
+console.log(calcAverage(tips));
