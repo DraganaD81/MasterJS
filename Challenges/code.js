@@ -267,41 +267,41 @@ TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 
 
 /* Write your code below. Good luck! 🙂 */
 
-const mark = {
-  fullName: 'Mark Miller',
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    this.bmi = this.mass / (this.height * this.height);
-    return this.bmi;
-  },
-};
+// const mark = {
+//   fullName: 'Mark Miller',
+//   mass: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.bmi = this.mass / (this.height * this.height);
+//     return this.bmi;
+//   },
+// };
 
-const john = {
-  fullName: 'Jonh Smith',
-  mass: 92,
-  height: 1.95,
-  calcBMI: function () {
-    this.bmi = this.mass / (this.height * this.height);
-    return this.bmi;
-  },
-};
+// const john = {
+//   fullName: 'Jonh Smith',
+//   mass: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.bmi = this.mass / (this.height * this.height);
+//     return this.bmi;
+//   },
+// };
 
 // When I want to assign value to const, i need to call method first.
-mark.calcBMI();
-john.calcBMI();
-console.log(mark.bmi, john.bmi);
-console.log(mark);
-// console.log(mark.calcBMI()>john.calcBMI());
-console.log(
-  mark.calcBMI() > john.calcBMI()
-    ? `${mark.fullName}'s BMI (${mark.calcBMI()}) is higher than ${
-        john.fullName
-      }'s BMI (${john.calcBMI()})`
-    : `${john.fullName}'s BMI (${john.calcBMI()}) is higher than ${
-        mark.fullName
-      }'s BMI (${mark.calcBMI()})`
-);
+// mark.calcBMI();
+// john.calcBMI();
+// console.log(mark.bmi, john.bmi);
+// console.log(mark);
+// // console.log(mark.calcBMI()>john.calcBMI());
+// console.log(
+//   mark.calcBMI() > john.calcBMI()
+//     ? `${mark.fullName}'s BMI (${mark.calcBMI()}) is higher than ${
+//         john.fullName
+//       }'s BMI (${john.calcBMI()})`
+//     : `${john.fullName}'s BMI (${john.calcBMI()}) is higher than ${
+//         mark.fullName
+//       }'s BMI (${mark.calcBMI()})`
+// );
 
 /* 
 CHALLENGE #4
@@ -332,37 +332,44 @@ To calculate the average, divide the sum you calculated before by the length of 
 Call the function with the totals array.
 */
 
-const calcTip = function (bill) {
-  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-};
+//
 
-/* Write your code below. Good luck! 🙂 */
+// Remember, we're gonna use strict mode in all scripts now!
+// 'use strict';
 
-const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
-// console.log(bills[2]);
-const tips = [];
-const totals = [];
+///////////////////////
+// Coding Challenge #1
 
-for (let i = 0; i < bills.length; i++) {
-  const tip = calcTip(bills[i]);
-  tips.push(tip);
-  totals.push(tip + bills[i]);
-  // console.log(calcTip(bills[i]) + bills[i]);
-  // console.log(totals[i]);
-}
+/*
+Given an array of forecasted maximum temperatures, the thermometer displays a string with these temperatures.
 
-console.log(bills, tips, totals);
+Example: [17,21,23] will print "... 1°C in 1 days ... 21°C in 2 days ... 23°C in 3 days ..."
 
-let arr = [];
+Create a function 'printForecast' which takes in an array 'arr' and logs a string like the above to the console.
 
-const calcAverage = function (arr) {
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
+Use the problem-solving framework: Understand the problem and break it up into sub-problems!
+
+TEST DATA 1: [17, 21, 23]
+TEST DATA 2: [12, 5, -5, 0, 4]
+*/
+
+// - Create arr with given data
+// - Create function
+// - How to add array as argument in function
+// - How to add as many iteration as I have values
+
+// console.log(arr);
+// console.log(arr[2]);
+
+const arr = [17, 21, 23];
+const arr2 = [12, 5, -5, 0, 4];
+const printForecast = function (arr) {
+  for (i = 0; i < arr.length; i++) {
+    console.log(`... ${arr[i]}°C in ${i + 1} days`);
   }
-  return sum / arr.length;
 };
-
-console.log(calcAverage(2, 3, 7));
-console.log(calcAverage(totals));
-console.log(calcAverage(tips));
+// console.log(arr.length);
+console.log('First array');
+printForecast(arr);
+console.log('Second array');
+printForecast(arr2);
