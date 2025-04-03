@@ -361,6 +361,8 @@ TEST DATA 2: [12, 5, -5, 0, 4]
 // console.log(arr);
 // console.log(arr[2]);
 
+/* MY SOLUTION
+
 const arr = [17, 21, 23];
 const arr2 = [12, 5, -5, 0, 4];
 const printForecast = function (arr) {
@@ -373,3 +375,29 @@ console.log('First array');
 printForecast(arr);
 console.log('Second array');
 printForecast(arr2);
+*/
+
+// 1) Understanding the problem
+// - Array transformed to string, separated by ...
+// - What is the X days? Answer: index + 1
+
+// 2) Breaking up into sub-problems
+// - Transform array into string
+// - Transform each element to string with °C
+// - String needs to contain day (index + 1)
+// - Add ... between elements and start and end of string
+
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+
+console.log(`... ${data1[0]}°C ... ${data1[1]}°C`);
+
+const printForecast = function (arr) {
+  let str = '';
+  for (let i = 0; i < arr.length; i++) {
+    str += `${arr[i]}°C in ${i + 1} days ... `;
+  }
+  console.log('... ' + str);
+};
+
+printForecast(data1);
