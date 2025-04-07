@@ -387,17 +387,69 @@ printForecast(arr2);
 // - String needs to contain day (index + 1)
 // - Add ... between elements and start and end of string
 
-const data1 = [17, 21, 23];
-const data2 = [12, 5, -5, 0, 4];
+// const data1 = [17, 21, 23];
+// const data2 = [12, 5, -5, 0, 4];
 
-console.log(`... ${data1[0]}°C ... ${data1[1]}°C`);
+// console.log(`... ${data1[0]}°C ... ${data1[1]}°C`);
 
-const printForecast = function (arr) {
-  let str = '';
-  for (let i = 0; i < arr.length; i++) {
-    str += `${arr[i]}°C in ${i + 1} days ... `;
+// const printForecast = function (arr) {
+//   let str = '';
+//   for (let i = 0; i < arr.length; i++) {
+//     str += `${arr[i]}°C in ${i + 1} days ... `;
+//   }
+//   console.log('... ' + str);
+// };
+
+// printForecast(data1);
+
+/*
+Let's say you're building a time tracking application for freelancers. At some point in building this app, you need a function that receives daily work hours for a certain week, and returns:
+1. Total hours worked
+2. Average daily hours
+3. The day with the most hours worked
+4. Number of the days worked
+5. Whether the week was full-time (worked 35 hours or more)
+
+TEST DATA: [7.5, 8, 6.5, 0, 8.5, 4, 0]
+*/
+
+function analyzeWorkWeek(dailyHours) {
+  if (!Array.isArray(dailyHours) || dailyHours.length !== 7) {
+    throw new Error(
+      'Input must be an array of 7 numbers representing daily work hours (Monday to Sunday).'
+    );
   }
-  console.log('... ' + str);
-};
 
-printForecast(data1);
+  const weekdays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  const totalHours = dailyHours.reduce((sum, hours) => sum + hours, 0);
+  const averageDailyHours = +(totalHours / 7).toFixed(1);
+  const maxHours = Math.max(...dailyHours);
+  const dayIndex = dailyHours.indexOf(maxHours);
+  const dayWithMostHours = weekdays[dayIndex];
+  const daysWorked = dailyHours.filter((hours) => hours > 0).length;
+  const isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    averageDailyHours,
+    dayWithMostHours,
+    daysWorked,
+    isFullTime,
+  };
+}
+
+const weeklyHours = [7.5, 8, 6.5, 0, 8.5, 5, 0]; // Monday to Sunday
+const report = analyzeWorkWeek(weeklyHours);
+console.log(report);
+
+const weeklyHours2 = [7.5, 8, 6.5, 0, 8.5]; // Monday to Sunday
+const report2 = analyzeWorkWeek(weeklyHours2);
+console.log(report2);
