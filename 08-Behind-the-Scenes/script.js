@@ -113,7 +113,7 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f();
-*/
+
 
 // var firstName = 'Matilda';
 
@@ -161,3 +161,51 @@ var addArrow = (a, b) => {
 };
 
 addArrow(2, 5, 8);
+*/
+
+/////////////////
+// Object References in Practice (Shallow vs. Deep Copies)
+
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+  return originalPerson;
+}
+
+const marriedJessica = marryPerson(jessica1, 'Davis');
+
+// const marriedJessica = jessica1;
+// marriedJessica.lastName = 'Davis';
+
+console.log('Before:', jessica1);
+console.log('After:', marriedJessica);
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+// Shallow copy
+const jessicaCopy = { ...jessica };
+jessicaCopy.lastName = 'Davis';
+
+// jessicaCopy.family.push('Mary');
+// jessicaCopy.family.push('John');
+
+// console.log('Before:', jessica);
+// console.log('After:', jessicaCopy);
+
+// Deep copy
+const jessicaClone = structuredClone(jessica);
+jessicaClone.family.push('Mary');
+jessicaClone.family.push('John');
+
+console.log('Original:', jessica);
+console.log('Clone:', jessicaClone);
