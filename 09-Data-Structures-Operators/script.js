@@ -48,6 +48,19 @@ const restaurant = {
   },
 };
 
+restaurant.numGuests = 0;
+
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// Nulish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+/*
+////////////
+// Short Circuiting (&& and ||)
+
 console.log('---- OR ----');
 // Use ANY data type, return ANY data type, short-circuiting
 console.log(3 || 'Jonas');
@@ -75,6 +88,7 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+*/
 
 /*
 //////////////////
