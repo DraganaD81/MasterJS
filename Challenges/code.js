@@ -526,52 +526,68 @@ const game = {
 };
 
 // 1.
-const player1 = game.players[0];
-const player2 = game.players[1];
+// const player1 = game.players[0];
+// const player2 = game.players[1];
 // console.log(player1);
 
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
 // 2.
-const [gk, ...fieldPlayers] = player1;
+const [gk, ...fieldPlayers] = players1;
 // console.log(gk);
 // console.log(fieldPlayers);
 
 // 3.
-const allPlayers = [...player1, ...player2];
+const allPlayers = [...players1, ...players2];
 // console.log(allPlayers);
 
 // 4.
-const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 // console.log(players1Final);
 
 // 5.
 // const [team1, draw, team2] = game.odds;
-const team1 = game.odds.team1;
-const draw = game.odds.x;
-const team2 = game.odds.team2;
+// const team1 = game.odds.team1;
+// const draw = game.odds.x;
+// const team2 = game.odds.team2;
 // console.log(team1);
 // console.log(draw);
 // console.log(team2);
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
 
 // 6.
-function printGoals(...player1) {
-  for (let i = 0; i < player1.length; i++) {
-    let playerScore = 0;
-    for (let j = 0; j < game.scored.length; j++) {
-      if (player1[i] === game.scored[j]) playerScore += 1;
-    }
-    console.log(player1[i], `${playerScore}`);
-  }
-}
+// function printGoals(...player1) {
+//   for (let i = 0; i < player1.length; i++) {
+//     let playerScore = 0;
+//     for (let j = 0; j < game.scored.length; j++) {
+//       if (player1[i] === game.scored[j]) playerScore += 1;
+//     }
+//     console.log(player1[i], `${playerScore}`);
+//   }
+// }
+
+const printGoals = function (...players) {
+  console.log(`${players.length} goals were scored`);
+};
 
 // printGoals(...allPlayers);
 printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
-console.log('/Separator/');
+printGoals('Davies', 'Muller');
+// console.log('/Separator/');
+// printGoals(...game.scored);
 printGoals(...game.scored);
 
 // 7.
 // console.log((game.odds.team1>game.odds.team2)= game.odds.team1 || game.odds.team2);
-console.log(
-  `Probably winner is: ${
-    game.odds.team1 < game.odds.team2 ? game.team1 : game.team2
-  }`
-);
+// console.log(
+//   `Probably winner is: ${
+//     game.odds.team1 < game.odds.team2 ? game.team1 : game.team2
+//   }`
+// );
+
+team1 < team2 console.log('Team 1 is more likely to win')
+team1 > team2 console.log('Team 2 is more likely to win')
