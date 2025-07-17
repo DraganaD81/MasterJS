@@ -48,6 +48,9 @@ const restaurant = {
   },
 };
 
+//
+/* Maps: Iterations
+
 const question = new Map([
   ['question', 'What ist the best programming language in the world?'],
   [1, 'C'],
@@ -79,6 +82,7 @@ console.log([...question]);
 // console.log(question.entries());
 console.log([...question.keys()]);
 console.log([...question.values()]);
+*/
 
 //
 /* Maps: Fundamentals
