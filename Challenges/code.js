@@ -690,7 +690,6 @@ whether it's in the first half or second half (after 45 min) of the game, like t
 GOAL
 GOOD LUCK 😀 */
 
-// 1.
 const gameEvents = new Map([
   [17, '⚽ GOAL'],
   [36, '🔁 Substitution'],
@@ -704,8 +703,10 @@ const gameEvents = new Map([
   [80, '⚽ GOAL'],
   [92, '🔶 Yellow card'],
 ]);
-const eventsSet = new Set(gameEvents.values());
-const events = [...eventsSet];
+
+// 1.
+// const eventsSet = new Set(gameEvents.values());
+const events = [...new Set(gameEvents.values())];
 console.log(events);
 
 // 2.
@@ -713,12 +714,18 @@ gameEvents.delete(64);
 console.log(gameEvents);
 
 // 3.
-const eventTime = 90 / gameEvents.size;
-console.log(`An event happened, on average, every ${eventTime} minutes`);
+// const eventTime = 90 / gameEvents.size;
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
 
 // 4.
-for (const [key, value] of gameEvents) {
-  if (key <= 45) {
-    console.log(`[FIRST HALF] ${key}: ${value}`);
-  } else console.log(`[SECOND HALF] ${key}: ${value}`);
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
+  // if (key <= 45) {
+  //   console.log(`[FIRST HALF] ${key}: ${value}`);
+  // } else console.log(`[SECOND HALF] ${key}: ${value}`);
 }
