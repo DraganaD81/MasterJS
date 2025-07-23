@@ -656,6 +656,8 @@ console.log(newBookTitle);
 
 // The title may contain both small and capital letters.
 
+// My solution
+/*
 function logBookTheme(bookTitle) {
   const title = bookTitle.toLowerCase();
   if (title.slice(0, bookTitle.indexOf(' ')) === 'computer') {
@@ -664,7 +666,7 @@ function logBookTheme(bookTitle) {
     title.indexOf('algorithms') !== -1 &&
     title.indexOf('structures') !== -1
   ) {
-    console.log('This book is about algorithms and data structures');
+    
   } else if (
     (title.lastIndexOf('system') !== -1 ||
       title.lastIndexOf('systems') !== -1) &&
@@ -680,5 +682,26 @@ for (let i = 0; i < books.length; i++) {
   console.log(i, books[i].title);
   logBookTheme(books[i].title);
 }
+  */
 
-// console.log(books[2].title);
+function logBookTheme(title) {
+  title = title.toLowerCase();
+
+  if (title.startsWith('computer')) {
+    console.log('This book is about computers');
+  } else if (title.includes('algorithms') && title.includes('structures')) {
+    console.log('This book is about algorithms and data structures');
+  } else if (
+    (title.endsWith('system') || title.endsWith('systems')) &&
+    !title.includes('operating')
+  ) {
+    console.log(
+      'This book is about some systems, but definitely not about operating systems'
+    );
+  }
+}
+
+// for (let i = 0; i < books.length; i++) {
+//   console.log(i, books[i].title);
+//   logBookTheme(books[i].title);
+// }
