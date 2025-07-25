@@ -713,10 +713,18 @@ function logBookTheme(title) {
 const bookCategories =
   'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
 
-const logBookCategories = function (categories) {
-  const books = categories.split(';');
-  console.log(...books);
-};
+// const logBookCategories = function (categories) {
+//   const books = categories.split(';');
+//   console.log(...books);
+// };
+
+function logBookCategories(str) {
+  const categories = str.split(';');
+
+  for (let category of categories) {
+    console.log(category);
+  }
+}
 
 logBookCategories(bookCategories);
 
@@ -726,16 +734,28 @@ logBookCategories(bookCategories);
 
 // console.log(books);
 
-const getKeywordsAsString = function (books) {
-  let allKeywords = [];
-  for (let i = 0; i < books.length; i++) {
-    allKeywords.push(...books[i].keywords);
+// const getKeywordsAsString = function (books) {
+//   let allKeywords = [];
+//   for (let i = 0; i < books.length; i++) {
+//     allKeywords.push(...books[i].keywords);
+//   }
+//   // console.log(typeof keywords);
+//   const uniqueKeywords = [...new Set(allKeywords)];
+//   const keywordString = uniqueKeywords.join('; ');
+//   console.log(keywordString);
+// };
+
+function getKeywordsAsString(books) {
+  const keywords = [];
+
+  for (const book of books) {
+    keywords.push(...book.keywords);
   }
-  // console.log(typeof keywords);
-  const uniqueKeywords = [...new Set(allKeywords)];
-  const keywordString = uniqueKeywords.join('; ');
-  console.log(keywordString);
-};
+
+  const uniqueKeywords = [...new Set(keywords)];
+
+  return uniqueKeywords.join(';');
+}
 
 getKeywordsAsString(books);
 
@@ -753,11 +773,18 @@ const bookChapters = [
   ['Strings', 706],
 ];
 
-const logBookChapters = function (chapters) {
-  for (let i = 0; i < chapters.length; i++) {
-    const key = chapters[i][0];
-    const value = chapters[i][1];
-    console.log(`${key.padEnd(15, '_')} ${value}`);
+// const logBookChapters = function (chapters) {
+//   for (let i = 0; i < chapters.length; i++) {
+//     const key = chapters[i][0];
+//     const value = chapters[i][1];
+//     console.log(`${key.padEnd(15, '_')} ${value}`);
+//   }
+// };
+
+function logBookChapters(chapters) {
+  for (const [chapter, pages] of chapters) {
+    console.log(chapter.padEnd(20, '_') + ' ' + pages);
   }
-};
+}
+
 logBookChapters(bookChapters);
