@@ -739,9 +739,9 @@ The input will come from a textarea inserted into the DOM (see code below to
 insert the elements), and conversion will happen when the button is pressed.
 Test data (pasted to textarea, including spaces):
 underscore_case
-first_name
+ first_name
 Some_Variable
-calculate_AGE
+  calculate_AGE
 delayed_departure
 Should produce this output (5 separate console.log outputs):
 underscoreCase ✅
@@ -764,10 +764,19 @@ GOOD LUCK 😀
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
-let inputText = '';
+const text = document.querySelector('textarea').value;
 
-// button.addEventListener('click', function () {
-//   inputText = textarea.value;
-// });
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  // console.log(rows);
 
-// console.log(inputText);
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
