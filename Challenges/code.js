@@ -832,15 +832,17 @@ const poll = {
   answers: new Array(4).fill(0),
 };
 
-console.log(poll);
-console.log(poll.answers);
-console.log(...poll.answers);
-console.log(typeof poll.answers);
-console.log(poll.answers[1]);
+// console.log(poll);
+// console.log(poll.answers);
+// console.log(...poll.answers);
+// console.log(typeof poll.answers);
+// console.log(poll.answers[1]);
 
 // console.log(poll.answers);
 
 // 1.
+const answer = document.querySelector('.poll');
+
 const registerNewAnswer = function () {
   const enteredNumber = prompt(
     `${poll.question} \n ${poll.options} \n (Write option number)`
@@ -853,12 +855,25 @@ const registerNewAnswer = function () {
     }
   }
   // console.log(enteredNumber);
+
   countAnswer(enteredNumber);
-  console.log(poll.answers);
+
+  const displayResults = function (type) {
+    if (type === 'array') {
+      console.log(poll.answers);
+    } else if (type === 'string') {
+      console.log(`Poll results are ${poll.answers}`);
+    }
+  };
+
+  displayResults('string');
+
+  // console.log(poll.answers);
 };
 
-document.addEventListener('click');
-registerNewAnswer();
+// document.addEventListener('click');
+answer.addEventListener('click', registerNewAnswer);
+// registerNewAnswer();
 
 // console.log(poll.options);
 // console.log(...poll.options);
