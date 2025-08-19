@@ -830,7 +830,45 @@ const poll = {
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
   answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    // Get answer
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+      )
+    );
+    console.log(answer);
+
+    // Register answer
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      // Poll results are 13, 2, 4, 1
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
+  },
 };
+// poll.registerNewAnswer();
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+
+// Test data for bonus:
+// § Data 1: [5, 2, 3]
+// § Data 2: [1, 5, 3, 9, 6, 1]
 
 // console.log(poll);
 // console.log(poll.answers);
@@ -839,6 +877,8 @@ const poll = {
 // console.log(poll.answers[1]);
 
 // console.log(poll.answers);
+
+/* My solution
 
 // 1.
 const answer = document.querySelector('.poll');
@@ -854,7 +894,6 @@ const registerNewAnswer = function () {
       console.log('Wrong option entered');
     }
   }
-  // console.log(enteredNumber);
 
   countAnswer(enteredNumber);
 
@@ -868,15 +907,7 @@ const registerNewAnswer = function () {
 
   displayResults('string');
 
-  // console.log(poll.answers);
 };
 
-// document.addEventListener('click');
 answer.addEventListener('click', registerNewAnswer);
-// registerNewAnswer();
-
-// console.log(poll.options);
-// console.log(...poll.options);
-// const optionsList = poll.options.forEach((option) => console.log(option));
-
-// console.log(poll.answers);
+*/
