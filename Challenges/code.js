@@ -923,10 +923,19 @@ the body element is clicked. Do not select the h1 element again!
 the time you need. Think about when exactly the callback function is executed,
 and what that means for the variables involved in this example.
 */
-
+/*
 (function () {
   const header = document.querySelector('h1');
   header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+*/
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
   document.querySelector('body').addEventListener('click', function () {
     header.style.color = 'blue';
   });
