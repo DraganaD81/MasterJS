@@ -93,7 +93,7 @@ const createUsernames = function (accs) {
 };
 
 createUsernames(accounts);
-console.log(accounts);
+// console.log(accounts);
 
 // console.log(containerMovements.innerHTML);
 
@@ -234,3 +234,15 @@ const movementDescriptions = movements.map(
 
 console.log(movementDescriptions);
 */
+
+const deposites = movements.filter(function (mov, i, arr) {
+  return mov > 0;
+});
+console.log(deposites);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+
+const witdrawals = movements.filter(mov => mov < 0);
+console.log(witdrawals);
