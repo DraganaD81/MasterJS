@@ -202,7 +202,7 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
-// console.log(dogs);
+console.log(dogs);
 
 dogs.forEach((dog) => {
   dog.recomendedFood = dog.weight ** 0.75 * 28;
@@ -223,8 +223,44 @@ dogs.filter((dog) => {
   }
 });
 
-// const ownersEatTooMuch =
+const ownersEatTooMuch = [];
+const ownersEatTooLittle = [];
 
-// const ownersEatTooLittle =
+dogs.filter((dog) => {
+  if (dog.curFood > dog.recomendedFood) {
+    ownersEatTooMuch.push(...dog.owners);
+  } else {
+    ownersEatTooLittle.push(...dog.owners);
+  }
+});
 
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat
+too little!`);
+
+// console.log(ownersEatTooMuch);
+// console.log(ownersEatTooLittle);
 // console.log(sarahsDog);
+
+const exactlyFood = dogs.some((dog) => {
+  if (dog.curFood === dog.recomendedFood) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+console.log(exactlyFood);
+
+// console.log(typeof dogs.weight);
+// console.log(dogs.some((curFood) => Number(curFood) === 250));
+
+// console.log(dogs.some((curFood) => dogs.curFood === dogs.recomendedFood));
+
+// dogs.find((dog) => {
+//   if (dog.curFood === dog.recomendedFood) {
+//     console.log(true);
+//   } else {
+//     console.log(false);
+//   }
+// });
