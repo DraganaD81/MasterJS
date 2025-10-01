@@ -252,6 +252,38 @@ const exactlyFood = dogs.some((dog) => {
 
 console.log(exactlyFood);
 
+const okayAmount = dogs.some((dog) => {
+  if (
+    dog.curFood > dog.recomendedFood * 0.9 &&
+    dog.curFood < dog.recomendedFood * 1.1
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+console.log(okayAmount);
+
+const dogsEatOkayAmount = [];
+
+dogs.some((dog) => {
+  if (
+    dog.curFood > dog.recomendedFood * 0.9 &&
+    dog.curFood < dog.recomendedFood * 1.1
+  ) {
+    dogsEatOkayAmount.push(dog);
+  } else {
+    return false;
+  }
+  console.log(dogsEatOkayAmount);
+});
+
+const dogsCopy = [...dogs];
+console.log(dogsCopy.sort((a, b) => a.recomendedFood - b.recomendedFood));
+
+// console.log(dogsCopy.recomendedFood.sort((a-b)=>a-b);
+
 // console.log(typeof dogs.weight);
 // console.log(dogs.some((curFood) => Number(curFood) === 250));
 
