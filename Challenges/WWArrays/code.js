@@ -391,8 +391,50 @@ const uniqueActivities = [...new Set(allActivities)];
 
 console.log(uniqueActivities);
 
-const swimmingAdjacentDogs = breeds.filter((breed) =>
-  breed.activities.includes('swimming')
-);
+const swimmingAdjacent = [
+  new Set(
+    breeds
+      .filter((breed) => breed.activities.includes('swimming'))
+      .map((breed) => breed.activities)
+      .flatMap((activities) => activities)
+      .filter((activity) => activity !== 'swimming')
+  ),
+];
+console.log(swimmingAdjacent);
 
-console.log(swimmingAdjacentDogs);
+console.log(breeds.every((breed) => breed.averageWeight >= 10));
+
+console.log(breeds.some((breed) => breed.activities.length > 2));
+
+// const fetchDogs = breeds.filter((breed) => breed.activities.includes('fetch'));
+// console.log(fetchDogs);
+
+// const max = fetchDogs.reduce((max, breed) => {
+//   if (breed.averageWeight > max) {
+//     return breed.averageWeight;
+//   } else {
+//     return max;
+//   }
+// }, 0);
+
+// console.log(max);
+
+const fetchDogs = breeds
+  .filter((breed) => breed.activities.includes('fetch'))
+  .reduce((max, breed) => {
+    if (breed.averageWeight > max) {
+      return breed.averageWeight;
+    } else {
+      return max;
+    }
+  }, 0);
+
+console.log(fetchDogs);
+
+// const finalSwimmingActivities = [...new Set(swimmingAdjacent)];
+
+// 01434311122
+
+// breeds.filter((breed) => breed.activities.includes('fetch'));
+
+// console.log(fetchHeaviestDog);
