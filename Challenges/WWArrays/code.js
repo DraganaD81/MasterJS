@@ -440,6 +440,7 @@ console.log(fetchDogs);
 // console.log(fetchHeaviestDog);
 */
 
+/* FINAL
 // 1.
 const huskyWeight = breeds.find(
   (breed) => breed.breed === 'Husky'
@@ -488,3 +489,4 @@ const heaviestFetchBread = Math.max(...fetchWeights);
 
 console.log(fetchWeights);
 console.log(heaviestFetchBread);
+*/
