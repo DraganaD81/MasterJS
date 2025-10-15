@@ -573,6 +573,7 @@ const groupedAccounts = Object.groupBy(accounts, ({ type }) => type);
 console.log(groupedAccounts);
 */
 
+/* Array Methods
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
@@ -594,12 +595,12 @@ console.log(y);
 const z = Array.from({ length: 7 }, (_, i) => i + 1);
 console.log(z);
 
-/* Random numbers - my solution 
-const dice = Array.from({ length: 100 }, (_, i) =>
-  Math.trunc(Math.random(i + 1) * 100)
-);
-console.log(dice);
-*/
+// Random numbers - my solution 
+// const dice = Array.from({ length: 100 }, (_, i) =>
+//   Math.trunc(Math.random(i + 1) * 100)
+// );
+// console.log(dice);
+//
 
 labelBalance.addEventListener('click', function () {
   const movementsUI = Array.from(
@@ -610,3 +611,16 @@ labelBalance.addEventListener('click', function () {
 
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
+*/
+
+// Non-Destructive Alternatives: toReversed, toSorted, toSpliced, with
+
+console.log(movements);
+const reversedMov = movements.toReversed();
+console.log(reversedMov);
+
+// toSorted (sort), toSpliced (splice)
+// movements[1] = 2000;
+const newMovements = movements.with(1, 2000);
+console.log(newMovements);
+console.log(movements);
