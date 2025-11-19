@@ -188,6 +188,24 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  // Set time to 5 minutes
+  let time = 120;
+
+  // Call the timer every second
+  setInterval(function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // Decrease 1s
+    time--;
+
+    // When 0 seconds, stop timer and log out user
+  }, 1000);
+};
+
 ///////////////////////////////////////
 // Event handlers
 let currentAccount;
@@ -242,6 +260,8 @@ btnLogin.addEventListener('click', function (e) {
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    startLogOutTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -577,7 +597,7 @@ console.log(
 */
 
 // Timers: setTimeout and setInterval
-
+/*
 // setTimeout
 const ingredients = ('olives', 'spinach');
 const pizzaTimer = setTimeout((ing1, ing2) =>
@@ -601,3 +621,4 @@ setInterval(function () {
   };
   console.log(new Intl.DateTimeFormat(navigator.language, options).format(now));
 }, 1000);
+*/
