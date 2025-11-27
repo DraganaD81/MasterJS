@@ -33,7 +33,8 @@ document.addEventListener('keydown', function (e) {
 //////////////////////////////
 //////////////////////////////
 //////////////////////////////
-
+//Selecting, Creating and Deleting Elements
+/*
 // Selecting elements
 console.log(document.documentElement);
 console.log(document.head);
@@ -70,7 +71,10 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
+*/
 
+//Sty;es, Attributes and Classes
+/*
 // Styles
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
@@ -118,3 +122,15 @@ logo.classList.contains('c'); // not includes
 
 // Don't use
 logo.className = 'jonas';
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  // e.preventDefault();
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+});
