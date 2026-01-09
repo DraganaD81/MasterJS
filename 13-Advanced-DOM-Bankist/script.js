@@ -167,22 +167,26 @@ const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+  });
 
-  if(entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
-  observer.unobserve(entry.target)
+  observer.unobserve(entry.target);
 };
 
 const sectionObserver = new IntersectionObserver(revealSection, {
-    root: null,
-    threshold: 0.15,
-  }
+  root: null,
+  threshold: 0.15,
 });
+
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add('section--hiden');
 });
+
+// Lazy loading images
+const imgTargets = document.querySelectorAll('img[data-src]');
 
 //////////////////////////////
 //////////////////////////////
