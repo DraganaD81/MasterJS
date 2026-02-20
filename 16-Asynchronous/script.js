@@ -2,7 +2,7 @@
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
-
+/*
 const renderError = function(msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
   countriesContainer.style.opacity = 1;
@@ -23,6 +23,7 @@ const renderCountry = function(data, className = '') {
         countriesContainer.insertAdjacentHTML('beforeend', html);
         countriesContainer.style.opacity = 1;
 };
+*/
 
 // NEW COUNTRIES API URL (use instead of the URL shown in videos):
 // https://restcountries.com/v2/name/portugal
@@ -126,6 +127,8 @@ setTimeout(() => {
 //   })
 // };
 
+// GET JSON
+/*
 const getJSON = function(url, errorMsg = 'Something went wrong') {
   return fetch(url)
   .then(response => {
@@ -136,6 +139,7 @@ const getJSON = function(url, errorMsg = 'Something went wrong') {
     return response.json();
   });
 };
+*/
 
 // const getCountryData = function(country) {
 //   // Country 1
@@ -229,7 +233,7 @@ TEST COORDINATES 2: -33.933, 18.474
 
 GOOD LUCK 😀
 */
-
+/* FINAL CHALLENGE #1
 const whereAmI = function(lat, lng) {
   fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`)
   .then(res => {
@@ -255,3 +259,15 @@ const whereAmI = function(lat, lng) {
   whereAmI(19.037, 72.873);
   whereAmI(-33.933, 18.474);
   // whereAmI();
+  */
+
+console.log('Test start');
+setTimeout(() => console.log('0 sec timer'), 0);
+Promise.resolve('Resolved promise 1').then(res => console.log(res));
+
+Promise.resolve('Resolved promise 2').then(res => {
+  for(let i=0; i<1000000000; i++) {}
+  console.log(res);
+})
+
+console.log('Test end');
