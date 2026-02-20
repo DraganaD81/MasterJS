@@ -2,7 +2,7 @@
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
-/*
+
 const renderError = function(msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
   countriesContainer.style.opacity = 1;
@@ -23,7 +23,6 @@ const renderCountry = function(data, className = '') {
         countriesContainer.insertAdjacentHTML('beforeend', html);
         countriesContainer.style.opacity = 1;
 };
-*/
 
 // NEW COUNTRIES API URL (use instead of the URL shown in videos):
 // https://restcountries.com/v2/name/portugal
@@ -274,6 +273,7 @@ Promise.resolve('Resolved promise 2').then(res => {
 console.log('Test end');
 */
 
+/*
 const lotteryPromise = new Promise(function(resolve, reject) {
   
   console.log('Lottery draw is happening 🔮');
@@ -313,3 +313,43 @@ wait(1)
 
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+*/
+
+
+const getPosition = function() {
+  return new Promise(function(resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position), 
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI = function() {
+  getPosition().then(pos => {
+    const {latitude: lat, longitude: lng} = pos.coords;
+    return fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`)
+  })
+  .then(res => {
+    if(!res.ok) throw new Error(`Problem with geocoding ${res.status}`)
+    return res.json();
+  })
+  .then(data => {
+    console.log(`You are in ${data.city}, ${data.countryName}`);
+
+    return fetch(`https://restcountries.com/v2/name/${data.countryName}`);
+  })
+  .then(res => {
+  if(!res.ok)
+      throw new Error(`Country not found (${res.status})`)
+  return res.json();
+  })
+  .then(data => renderCountry(data[0]))
+  .catch(err =>
+      console.error(`${err.message} 💥`));
+};
+
+btn.addEventListener('click', whereAmI);
