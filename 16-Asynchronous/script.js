@@ -5,7 +5,7 @@ const countriesContainer = document.querySelector('.countries');
 
 const renderError = function(msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 }
 
 const renderCountry = function(data, className = '') {
@@ -21,7 +21,7 @@ const renderCountry = function(data, className = '') {
           </div>
         </article>`;
         countriesContainer.insertAdjacentHTML('beforeend', html);
-        // countriesContainer.style.opacity = 1;
+        countriesContainer.style.opacity = 1;
 };
 
 // NEW COUNTRIES API URL (use instead of the URL shown in videos):
@@ -173,6 +173,7 @@ const getJSON = function(url, errorMsg = 'Something went wrong') {
 // });
 // };
 
+/*
 const getCountryData = function(country) {
   // Country 1
   getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
@@ -201,6 +202,7 @@ btn.addEventListener('click', function() {
 
   // getCountryData('australia');
 
+*/
   ///////////////////////////////////////
 // Coding Challenge #1
 
@@ -230,22 +232,26 @@ GOOD LUCK 😀
 
 const whereAmI = function(lat, lng) {
   fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`)
-  .then(data => {
-    if (!data) throw new Error('Something went wrong')
-    return data.json();
-  }
-  )
-  .then(data => {
-    const city = data.city;
-    const country = data.countryName;
-    console.log(`You are in ${city}, ${country}`);
+  .then(res => {
+    if(!res.ok) throw new Error(`Problem with geocoding ${res.status}`)
+    return res.json();
   })
-  .catch(err => {
-      console.error(`${err} 💥💥💥`);
-      renderError(`${err.message}. Try again!`);
-    })
-}
+  .then(data => {
+    console.log(`You are in ${data.city}, ${data.countryName}`);
+
+    return fetch(`https://restcountries.com/v2/name/${data.countryName}`);
+  })
+  .then(res => {
+  if(!res.ok)
+      throw new Error(`Country not found (${res.status})`)
+  return res.json();
+  })
+  .then(data => renderCountry(data[0]))
+  .catch(err =>
+      console.error(`${err.message} 💥`));
+};
 
   whereAmI(52.508, 13.381);
   whereAmI(19.037, 72.873);
   whereAmI(-33.933, 18.474);
+  // whereAmI();
