@@ -287,7 +287,9 @@ const lotteryPromise = new Promise(function(resolve, reject) {
 
 });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+lotteryPromise
+.then(res => console.log(res))
+.catch(err => console.error(err));
 
 // Promisufying setTimeout
 const wait = function(seconds) {
@@ -315,7 +317,7 @@ Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 */
 
-
+/*
 const getPosition = function() {
   return new Promise(function(resolve, reject) {
     // navigator.geolocation.getCurrentPosition(
@@ -353,3 +355,111 @@ const whereAmI = function() {
 };
 
 btn.addEventListener('click', whereAmI);
+*/
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Build the image loading functionality that I just showed you on the screen.
+
+Tasks are not super-descriptive this time, so that you can figure out some stuff on your own. Pretend you're working on your own 😉
+
+PART 1
+1. Create a function 'createImage' which receives imgPath as an input. This function returns a promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path. When the image is done loading, append it to the DOM element with the 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image ('error' event), reject the promise.
+
+If this part is too tricky for you, just watch the first part of the solution.
+
+PART 2
+2. Comsume the promise using .then and also add an error handler;
+3. After the image has loaded, pause execution for 2 seconds using the wait function we created earlier;
+4. After the 2 seconds have passed, hide the current image (set display to 'none'), and load a second image (HINT: Use the image element returned by the createImage promise to hide the current image. You will need a global variable for that 😉);
+5. After the second image has loaded, pause execution for 2 seconds again;
+6. After the 2 seconds have passed, hide the current image.
+
+TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
+
+GOOD LUCK 😀
+*/
+
+const imgLocation = document.querySelector('.images');
+const img = document.querySelector('img');
+
+const wait = function(seconds) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, seconds * 2000)
+  })
+}
+
+const image = document.createElement('img');
+
+const createImage = function (imgPath) {
+  new Promise(function(resolve){
+      image.src = imgPath;
+      imgLocation.append(image);
+      // console.log(image);
+      return image;
+    })
+  }
+
+const hideImage = function () {
+  document.querySelector('img').style.display = 'none';
+}
+
+
+// wait()
+// .then(()=>
+//   createImage('../img/img-1.jpg'))
+//   .then(()=>{
+//   wait(20);
+//   // document.querySelectorAll('img').style.display = 'none';
+//   return current;
+// })
+// .then(()=>{
+//   createImage('../img/img-2.jpg');
+//   // console.log(current);
+// }
+// );
+
+  // createImage('../img/img-2.jpg');
+  // createImage('../img/img-3.jpg');
+
+// console.log(typeof(image));
+
+wait()
+.then(() => {
+  createImage('../img/img-1.jpg')
+  return wait(2);
+})
+// .then(() => { 
+//   hideImage();
+// })
+.then(() => {
+  createImage('../img/img-2.jpg');
+  return wait(2);
+})
+.then(() => {
+  return wait(2);
+})
+.then(() => {
+  createImage('../img/img-3.jpg')
+})
+
+// createImage('../img/img-1.jpg');
+// hideImage();
+
+
+
+
+
+// createImage('../img/img-1.jpg');
+
+// const getPosition = function() {
+//   return new Promise(function(resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position), 
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// }
