@@ -698,7 +698,7 @@ const imgContainer = document.querySelector('.images');
 // loadNPause('img/img-1.jpg');
 // console.log(loadNPause('img/img-1.jpg'));
 
-// let currentImg;
+let currentImg;
 
 // loadNPause('img/img-1.jpg')
 //   .then(img => {
@@ -724,6 +724,7 @@ const createImage = function (imgPath) {
   return new Promise(function (resolve, reject) {
     const img = document.createElement('img');
     img.src = imgPath;
+    img.classList.add('paralell');
 
     img.addEventListener('load', function () {
       imgContainer.append(img);
@@ -736,7 +737,7 @@ const createImage = function (imgPath) {
   });
 };
 
-let currentImg;
+// let currentImg;
 
 // createImage('img/img-1.jpg')
 //   .then(img => {
@@ -758,15 +759,24 @@ let currentImg;
 //   })
 //   .catch(err => console.error(err));
 
-// let imgArr = [];
+const imgs = ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg'];
 const loadAll = async function (imgArr) {
   try {
-    const imgs = imgArr;
-    imgs.map(imgs => createImage(imgArr));
-    console.log(imgs);
+    const imgs = imgArr.map((imgs, i) => createImage(imgArr[i]));
   } catch {
     err => console.error(err);
   }
 };
-[
-loadAll('img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg')
+
+loadAll(imgs);
+
+new Promise(resolve => {
+  return console.log([...imgs]);
+});
+
+const imgContainerAll = document.querySelectorAll('.images');
+imgContainerAll.forEach(img => {
+  img.classList.add('paralell');
+});
+
+console.log(imgContainerAll);
